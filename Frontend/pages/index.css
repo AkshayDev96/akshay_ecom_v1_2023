@@ -1,0 +1,69 @@
+body{
+    margin: 0px;
+    padding: 0px;
+   
+}
+
+.bar{
+    height: 50px;
+    background-color: darkcyan;
+    display: flex;
+}
+
+.list{
+    list-style: none;
+    margin: auto;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    flex-direction: column;
+}
+
+/* # SCSS */
+/* @import "~react-image-gallery/styles/scss/image-gallery.scss"; */
+
+/* # CSS */
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.list>.option{
+    float: left;
+    margin-right: 10px;
+}
+
+.searchBar{
+    display: block;
+    margin: auto;
+}
+
+  
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper {
+    width: 100%;
+    height: 300px;
+    margin: 20px auto;
+  }
+ 
+  

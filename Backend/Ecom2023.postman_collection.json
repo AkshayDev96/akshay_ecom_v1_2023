@@ -1,0 +1,541 @@
+{
+	"info": {
+		"_postman_id": "e74cd024-1761-4ccd-9ee2-4beda4b25564",
+		"name": "Ecom2023",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "POST / category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 3",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Akshay/Desktop/1659816b-21a9-41db-babb-1c8d0cff47e4.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/category/add",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / category details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 1",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Akshay/Desktop/1659816b-21a9-41db-babb-1c8d0cff47e4.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/category/get/64589e6992f622c1ef04c08c",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"get",
+										"64589e6992f622c1ef04c08c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT / category update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 12",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/category/update/64589e6992f622c1ef04c08c",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"update",
+										"64589e6992f622c1ef04c08c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE / category delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/category/delete/64589e6992f622c1ef04c08c",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"delete",
+										"64589e6992f622c1ef04c08c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / Category list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/category/list",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "subcategory",
+					"item": [
+						{
+							"name": "POST / subcategory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 3",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Akshay/Desktop/1659816b-21a9-41db-babb-1c8d0cff47e4.jpg"
+										},
+										{
+											"key": "category",
+											"value": "64589d616cf6a70748193011",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/subcategory/add",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"subcategory",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / subcategory details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/subcategory/get/645b35ff0bb8a7f275cb2883",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"subcategory",
+										"get",
+										"645b35ff0bb8a7f275cb2883"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT / subcategory update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 12",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/subcategory/update/645b35ff0bb8a7f275cb2883",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"subcategory",
+										"update",
+										"645b35ff0bb8a7f275cb2883"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE / subcategory delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/subcategory/delete/645b35ff0bb8a7f275cb2883",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"subcategory",
+										"delete",
+										"645b35ff0bb8a7f275cb2883"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / subcategory list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/subcategory/list",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"subcategory",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "POST / product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "New Item",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/Akshay/Desktop/1659816b-21a9-41db-babb-1c8d0cff47e4.jpg"
+										},
+										{
+											"key": "category",
+											"value": "64589d616cf6a70748193011",
+											"type": "default"
+										},
+										{
+											"key": "subcategory",
+											"value": "645b36750bb8a7f275cb288c",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "alksdjalksjdlkajsdlkjalksd",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "5000",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/add",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / product details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/get/645b376479f1388e646ea543",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"get",
+										"645b376479f1388e646ea543"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT / product update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "category 12",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/update/645b376479f1388e646ea543",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"update",
+										"645b376479f1388e646ea543"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE / product delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/delete/645b376479f1388e646ea543",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"delete",
+										"645b376479f1388e646ea543"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / product list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/list",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / product list by category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/category/64589d616cf6a70748193011",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"category",
+										"64589d616cf6a70748193011"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET / product list subCategory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/admin/product/subcategory/645b36750bb8a7f275cb288c",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"admin",
+										"product",
+										"subcategory",
+										"645b36750bb8a7f275cb288c"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST /register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/admin/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"admin",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/admin/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:2023/api"
+		}
+	]
+}
