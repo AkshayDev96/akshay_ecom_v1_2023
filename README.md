@@ -1,1 +1,4 @@
-# akshay_ecom_v1_2023
+# Welcome to Akshay`s Shop Project
+# This project is divided in two modules
+# 1. Frontend - Next.JS
+# 2. Backend - Node.JS
