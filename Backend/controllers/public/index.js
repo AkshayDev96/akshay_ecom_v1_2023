@@ -65,13 +65,8 @@ exports.list_category = async (req, res) => {
 exports.list_products = async (req, res) => {
     try {
         //try
-        const details = await productSchema.aggregate([
-            {
-                $match:{
-                    category:req.query?.category,
-                    subcategory:req.query?.subcategory
-                }
-            },
+
+        const query = [
             {
                 $lookup: {
                     from: 'categories',
@@ -87,13 +82,47 @@ exports.list_products = async (req, res) => {
                     localField: 'subcategory',
                     as: "subcategories"
                 }
-            }, {
-                $sort: { createdAt: -1 }
             },
-            {
-                $limit: parseInt(req.query?.limit)
-            }
-        ])
+            // {
+            //     $match:{
+            //         "categories.slug":req.query?.category,
+            //         "subcategories.slug":req.query?.subcategory
+            //     }
+            // }
+            // , {
+            //     $sort: { createdAt: -1 }
+            // },
+            // {
+            //     $limit: parseInt(req.query?.limit)
+            // }
+        ]
+
+        if (req.query?.category && req.query?.subcategory) {
+            query.push({
+                $match: {
+                    "categories.slug": req.query?.category,
+                    "subcategories.slug": req.query?.subcategory
+                }
+            })
+        }else if(req.query?.category && !req.query?.subcategory){
+            query.push({
+                $match: {
+                    "categories.slug": req.query?.category
+                }
+            })
+        }else if(!req.query?.category && req.query?.subcategory){
+            query.push({
+                $match: {
+                    "subcategories.slug": req.query?.subcategory
+                }
+            })
+        }
+
+        if(req.query?.limit){
+            query.push({$limit: parseInt(req.query?.limit)})
+        }
+
+        const details = await productSchema.aggregate(query)
         if (details?.length === 0) {
             //product does not exists
             return sendResponse(res, "Product does not exists!", [], 200)
@@ -123,14 +152,14 @@ exports.list_category_products = async (req, res) => {
                 $lookup: {
                     from: 'products',
                     as: 'products',
-                    let: { indicator_id: '$_id',featuredMatch:req.query?.featured==="true"?true:false },
+                    let: { indicator_id: '$_id', featuredMatch: req.query?.featured === "true" ? true : false },
                     pipeline: [
                         {
                             $match: {
-                                $expr: { $and:[{$eq: ['$category', '$$indicator_id']},{$eq: ['$featured', '$$featuredMatch']}] }
+                                $expr: { $and: [{ $eq: ['$category', '$$indicator_id'] }, { $eq: ['$featured', '$$featuredMatch'] }] }
                             }
                         },
-                        { $sort: { updatedAt: -1 } }, 
+                        { $sort: { updatedAt: -1 } },
                         { $limit: parseInt(req.query?.product_limit) }
                     ]
                 }
