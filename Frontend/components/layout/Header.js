@@ -2,6 +2,7 @@ import React from 'react'
 import Cart from './Cart'
 import { getCategories } from '../../services'
 import Head from 'next/head'
+import Link from 'next/link'
 
 const Header = () => {
 
@@ -33,21 +34,21 @@ const Header = () => {
                   </div>
 
                   <div className="right-top-bar flex-w h-full">
-                    <a href="#" className="flex-c-m trans-04 p-lr-25">
+                    <Link href="#" className="flex-c-m trans-04 p-lr-25">
                       Help & FAQs
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m trans-04 p-lr-25">
+                    <Link href="#" className="flex-c-m trans-04 p-lr-25">
                       My Account
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m trans-04 p-lr-25">
+                    <Link href="#" className="flex-c-m trans-04 p-lr-25">
                       EN
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m trans-04 p-lr-25">
+                    <Link href="#" className="flex-c-m trans-04 p-lr-25">
                       USD
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -56,9 +57,9 @@ const Header = () => {
                 <nav className="limiter-menu-desktop container">
 
                   {/* <!-- Logo desktop --> */}
-                  <a href="#" className="logo">
+                  <Link href="/" className="logo">
                     <img src="images/icons/logo-01.png" alt="IMG-LOGO" />
-                  </a>
+                  </Link>
 
                   {/* <!-- Menu desktop --> */}
                   <div className="menu-desktop">
@@ -68,25 +69,30 @@ const Header = () => {
                       {
                         categories?.length !== 0 && categories?.map((cate, i) => (
                           <li className={i===0?"active-menu":"menu"} key={i}>
-                            <a href="index.html">
+                            <Link href={`/shop?categories=${cate.name}`}>
+                              <a>
                               <img src={cate?.image?.thumbnailUrl} style={{ width: 40, height: 40, borderRadius: 100 }} alt={cate?.name} />
                               <span> {cate?.name}</span>
-                            </a>
+                              </a>
+                            </Link>
 
                             <ul className="sub-menu">
                               {cate?.subcategories?.length !== 0 && cate?.subcategories?.map((sub, k) => (
-                                <li key={k}><a href="index.html">
+                                <li key={k}><Link href={`/shop?subcategories=${cate.name}`}>
+                                  <a>
                                   <img src={sub?.image?.thumbnailUrl} style={{ width: 80, height: 70 }} alt={sub?.name} />
                                   <span> {sub?.name}</span>
-                                </a></li>
+                                  </a>
+                                </Link></li>
                               ))}
                             </ul>
                           </li>
                         ))
                       }
 
-                      <li className={"menu"}><a>About</a></li>
-                      <li className={"menu"}><a>Contact</a></li>
+                      <li className={"menu"}><Link href='/shop'>Shop</Link></li>
+                      <li className={"menu"}><Link href="/about">About</Link></li>
+                      <li className={"menu"}><Link href="/contact">Contact</Link></li>
 
                     </ul>
                   </div>
@@ -101,9 +107,9 @@ const Header = () => {
                       <i className="zmdi zmdi-shopping-cart"></i>
                     </div>
 
-                    <a href="#" className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                    <Link href="#" className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                       <i className="zmdi zmdi-favorite-outline"></i>
-                    </a>
+                    </Link>
                   </div>
                 </nav>
               </div>
@@ -113,7 +119,7 @@ const Header = () => {
             <div className="wrap-header-mobile">
               {/* <!-- Logo moblie --> */}
               <div className="logo-mobile">
-                <a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO" /></a>
+                <Link href="/"><img src="images/icons/logo-01.png" alt="IMG-LOGO" /></Link>
               </div>
 
               {/* <!-- Icon header --> */}
@@ -126,9 +132,9 @@ const Header = () => {
                   <i className="zmdi zmdi-shopping-cart"></i>
                 </div>
 
-                <a href="#" className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+                <Link href="#" className="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
                   <i className="zmdi zmdi-favorite-outline"></i>
-                </a>
+                </Link>
               </div>
 
               {/* <!-- Button show menu --> */}
@@ -151,21 +157,21 @@ const Header = () => {
 
                 <li>
                   <div className="right-top-bar flex-w h-full">
-                    <a href="#" className="flex-c-m p-lr-10 trans-04">
+                    <Link href="#" className="flex-c-m p-lr-10 trans-04">
                       Help & FAQs
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m p-lr-10 trans-04">
+                    <Link href="#" className="flex-c-m p-lr-10 trans-04">
                       My Account
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m p-lr-10 trans-04">
+                    <Link href="#" className="flex-c-m p-lr-10 trans-04">
                       EN
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex-c-m p-lr-10 trans-04">
+                    <Link href="#" className="flex-c-m p-lr-10 trans-04">
                       USD
-                    </a>
+                    </Link>
                   </div>
                 </li>
               </ul>
@@ -174,16 +180,20 @@ const Header = () => {
                 {
                   categories?.length !== 0 && categories?.map((cate, i) => (
                     <li key={i} className='mb-3 mt-3' >
-                      <a href="index.html">
+                      <Link href={`/shop?categories=${cate.name}`}>
+                        <a>
                         <img src={cate?.image?.thumbnailUrl} style={{ width: 40, height: 40, borderRadius: 100 }} alt={cate?.name} />
                         <span> {cate?.name}</span>
-                      </a>
+                        </a>
+                      </Link>
                       <ul className="sub-menu-m">
                         {cate?.subcategories?.length !== 0 && cate?.subcategories?.map((sub, k) => (
-                          <li key={k} className='mb-2 mt-2'><a href="index.html">
+                          <li key={k} className='mb-2 mt-2'><Link href={`/shop?subcategories=${sub.name}`}>
+                            <a>
                             <img src={sub?.image?.thumbnailUrl} style={{ width: 80, height: 70 }} alt={sub?.name} />
                             <span> {sub?.name}</span>
-                          </a>
+                            </a>
+                          </Link>
                         
                           </li>
                         ))}
@@ -198,8 +208,9 @@ const Header = () => {
                     </li>
                   ))
                 }
-                <li className='mb-3 mt-3' ><a>About</a></li>
-                <li className='mb-3 mt-3' ><a>Contact</a></li>
+                <li className='mb-3 mt-3' ><Link href='/shop'>Shop</Link></li>
+                <li className='mb-3 mt-3' ><Link href={'/about'}>About</Link></li>
+                <li className='mb-3 mt-3' ><Link href={'/contact'}>Contact</Link></li>
 
               </ul>
             </div>

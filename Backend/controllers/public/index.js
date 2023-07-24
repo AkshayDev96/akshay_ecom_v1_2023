@@ -66,7 +66,12 @@ exports.list_products = async (req, res) => {
     try {
         //try
         const details = await productSchema.aggregate([
-
+            {
+                $match:{
+                    category:req.query?.category,
+                    subcategory:req.query?.subcategory
+                }
+            },
             {
                 $lookup: {
                     from: 'categories',
@@ -143,6 +148,27 @@ exports.list_category_products = async (req, res) => {
         }
 
         return sendResponse(res, "Products is details fetched successfully!", { details }, 200)
+    } catch (error) {
+        //catch for error
+        if (error?.message) {
+            //Bad Request error
+            return errorResponse(res, error?.message, error, 400)
+        }
+        //For internal error
+        return errorResponse(res, "Something went wrong", error)
+    }
+}
+
+
+/*
+ API URL: api/subcategory/list
+ Description: This api is for list subcategory with subcategories.
+*/
+exports.list_subcategory = async (req, res) => {
+    try {
+        //try
+        const list = await categorySchema.find()
+        return sendResponse(res, "SubCategory is list fetched successfully!", { subcategories: list }, 200)
     } catch (error) {
         //catch for error
         if (error?.message) {

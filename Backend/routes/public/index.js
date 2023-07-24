@@ -22,6 +22,13 @@ route.get("/category/list", publicCategoryController.list_category)
 
 /*
 Method:GET
+API URL: api/subcategory/list
+Description: This api is for public get category list.
+*/
+route.get("/subcategory/list", publicCategoryController.list_subcategory)
+
+/*
+Method:GET
 API URL: api/products/list
 Description: This api is for public get products list.
 */

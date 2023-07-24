@@ -1,40 +1,54 @@
 import React from 'react'
+import { getCategories } from '../../services'
+import Link from 'next/link'
+import Head from 'next/head'
 
 const Products = () => {
+
+    const [categories, setCategories] = React.useState([])
+    const [subcategories, setSubCategories] = React.useState([])
+    const [subcategorySelected, setSubCategory] = React.useState("")
+    const [categorySelected, setCategory] = React.useState("")
+
+    React.useEffect(() => {
+        getCategories().then((res) => {
+            if (res?.data) {
+                setCategories(res?.data?.data?.categories)
+            }
+        }).catch(e => console.log(e))
+    }, [])
+
     return (
-        <section class="bg0 p-t-23 p-b-140">
+        <div class="bg0 m-t-50 p-b-200" style={{ marginTop: 90 }}>
+           {
+            categories?.length!==0 && (
+                <Head>
+                <script src='js/filter.js' />
+              </Head>   
+            )
+           } 
             <div class="container">
                 <div class="p-b-10">
                     <h3 class="ltext-103 cl5">
-                        Product Overview
+                        Shopping
                     </h3>
                 </div>
 
                 <div class="flex-w flex-sb-m p-b-52">
                     <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                        <button onClick={() => {setSubCategories([]);setSubCategory('');setCategory('');}} class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
                             All Products
                         </button>
+                        {
+                            categories?.length !== 0 && categories?.map((cate, i) => (
+                                <Link href={`/shop?category=${cate?.name}`} key={i}>
+                                    <button onClick={() => {setSubCategories(cate?.subcategories);setCategory(cate?.slug);}} class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter={`.${cate.slug}`}>
+                                        {cate?.name}
+                                    </button>
+                                </Link>
+                            ))
+                        }
 
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                            Women
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                            Men
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-                            Bag
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-                            Shoes
-                        </button>
-
-                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-                            Watches
-                        </button>
                     </div>
 
                     <div class="flex-w flex-c-m m-tb-10">
@@ -67,45 +81,17 @@ const Products = () => {
                         <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                             <div class="filter-col1 p-r-15 p-b-27">
                                 <div class="mtext-102 cl2 p-b-15">
-                                    Sort By
+                                    By Sub Category
                                 </div>
 
                                 <ul>
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04">
-                                            Default
-                                        </a>
-                                    </li>
-
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04">
-                                            Popularity
-                                        </a>
-                                    </li>
-
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04">
-                                            Average rating
-                                        </a>
-                                    </li>
-
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                            Newness
-                                        </a>
-                                    </li>
-
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04">
-                                            Price: Low to High
-                                        </a>
-                                    </li>
-
-                                    <li class="p-b-6">
-                                        <a href="#" class="filter-link stext-106 trans-04">
-                                            Price: High to Low
-                                        </a>
-                                    </li>
+                                    {subcategories?.length !== 0 && subcategories?.map((sub, i) => (
+                                        <li class="p-b-6" key={i} onClick={()=>setSubCategory(sub?.slug)}>
+                                            <Link href={`/shop?subcategory=${sub?.slug}`} class="filter-link stext-106 trans-04">
+                                                {sub?.name}
+                                            </Link>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
 
@@ -160,7 +146,7 @@ const Products = () => {
 
                                 <ul>
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color:"#222"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#222" }}>
                                             <i class="zmdi zmdi-circle"></i>
                                         </span>
 
@@ -170,7 +156,7 @@ const Products = () => {
                                     </li>
 
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color: "#4272d7"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#4272d7" }}>
                                             <i class="zmdi zmdi-circle"></i>
                                         </span>
 
@@ -180,7 +166,7 @@ const Products = () => {
                                     </li>
 
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color:"#b3b3b3"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#b3b3b3" }}>
                                             <i class="zmdi zmdi-circle"></i>
                                         </span>
 
@@ -190,7 +176,7 @@ const Products = () => {
                                     </li>
 
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color: "#00ad5f"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#00ad5f" }}>
                                             <i class="zmdi zmdi-circle"></i>
                                         </span>
 
@@ -200,7 +186,7 @@ const Products = () => {
                                     </li>
 
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color: "#fa4251"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#fa4251" }}>
                                             <i class="zmdi zmdi-circle"></i>
                                         </span>
 
@@ -210,7 +196,7 @@ const Products = () => {
                                     </li>
 
                                     <li class="p-b-6">
-                                        <span class="fs-15 lh-12 m-r-6" style={{color:"#aaa"}}>
+                                        <span class="fs-15 lh-12 m-r-6" style={{ color: "#aaa" }}>
                                             <i class="zmdi zmdi-circle-o"></i>
                                         </span>
 
@@ -773,7 +759,7 @@ const Products = () => {
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 
